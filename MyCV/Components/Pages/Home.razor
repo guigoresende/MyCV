@@ -1,0 +1,115 @@
+﻿@page "/"
+
+<PageTitle>Curriculum Vitae - Rodrigo Ricardo Correia Muniz de Resende</PageTitle>
+
+<h3 style="text-align:center">Rodrigo Ricardo Correia Muniz de Resende</h3>
+<div style="text-align:center">
+    <i class="fa-solid fa-at" /> <a href="mailto:guigoresende@gmail.com">guigoresende@gmail.com</a> | <i class="fa-solid fa-phone" /> <a href="https://wa.me/5541991669387" target="_blank">+55 41 99166-9387</a> | Curitiba, Brazil
+</div>
+<div style="text-align:center">
+    <a href="https://www.linkedin.com/in/guigoresende/" target="_blank">https://www.linkedin.com/in/guigoresende/</a> | <a href="https://github.com/guigoresende" target="_blank">https://github.com/guigoresende</a> | EU Citizen
+</div>
+
+<h3 style="text-align:center; padding:30px 0px 10px 0px">SENIOR SOFTWARE ENGINEER - SPECIALIST IN C#</h3>
+<p class="pre-wrap">@AboutMe</p>
+
+@if (ExpertiseAreaList != null && ExpertiseAreaList.Any())
+{
+
+    <h4>
+        Areas of expertise: / Core skills:
+    </h4>
+    <div>
+        @foreach (var expertiseArea in ExpertiseAreaList)
+        {
+            <b>@expertiseArea.Key:</b>
+            <ul>
+                @foreach (var description in expertiseArea.Value)
+                {
+                    <li>@description</li>
+                }
+            </ul>
+        }
+    </div>
+}
+
+@if (CarrerBackgroundList != null && CarrerBackgroundList.Any())
+{
+
+    <h4>
+        Carrer backgrond:
+    </h4>
+    @foreach (var carrerBackground in CarrerBackgroundList)
+    {
+        <ul>
+            <li>
+                <div>
+                    <b>@carrerBackground.Position</b> (@carrerBackground.Type) | <a href="@(string.IsNullOrEmpty(carrerBackground.Link) ? "#" : carrerBackground.Link)" target="_blank">@carrerBackground.CompanyName</a> | @carrerBackground.StartDate.ToString("MMMM yyyy", EN) - @(carrerBackground.EndDate.HasValue ? carrerBackground.EndDate.Value.ToString("MMMM yyyy", EN) : "Current")
+                </div>
+                <div class="pre-wrap">
+                    @carrerBackground.Description
+                </div>
+            </li>
+        </ul>
+    }
+}
+
+@if (EducationList != null && EducationList.Any())
+{
+
+    <h4>
+        Education:
+    </h4>
+    @foreach (var education in EducationList)
+    {
+        <ul>
+            <li>
+                <div>
+                    <b>@education.Name</b> | @education.College - @education.Local
+                </div>
+                <div>
+                    Start: @education.StartDate.ToString("MMMM yyyy", EN) - End: @(education.EndDate.HasValue ? education.EndDate.Value.ToString("MMMM yyyy", EN) : "Current")
+                </div>
+            </li>
+        </ul>
+    }
+}
+
+@if (LanguageList != null && LanguageList.Any())
+{
+    <h4>
+        Languages:
+    </h4>
+    <div>
+        @foreach (var language in LanguageList)
+        {
+            <ul>
+                <li>
+                    <div>
+                        <b>@language.Name:</b> @language.Level
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+}
+
+@if (AwardsList != null && AwardsList.Any())
+{
+
+    <h4>
+        Awards, accomplishments and honours:
+    </h4>
+    <div>
+        @foreach (var award in AwardsList)
+        {
+            <ul>
+                <li>
+                    <div>
+                        @award.Description
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+}
